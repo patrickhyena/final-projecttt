@@ -84,6 +84,7 @@ hit_sound = pygame.mixer.Sound("hit.wav")
 #how to indicate that the player lost
 def hit():
     
+    #calling the sound when hit
     pygame.mixer.Sound.play(hit_sound)
     largeText = pygame.font.SysFont("comicsansms",115)
     TextSurf, TextRect = text_objects("You Got Hit", largeText)
@@ -116,6 +117,7 @@ def start_menu():
                 quit()
                 
         gameDisplay.fill(pink)
+        #for the title
         largeText = pygame.font.SysFont("comicsansms",100)
         TextSurf, TextRect = text_objects("Tightrope Dodge", largeText)
         TextRect.center = ((display_width/2),(display_height/2))
@@ -161,6 +163,7 @@ def game_loop():
                     x_change = -5
                 if event.key == pygame.K_RIGHT:
                     x_change = 5
+            #to make the player move
  
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
@@ -169,8 +172,10 @@ def game_loop():
         x += x_change
         gameDisplay.fill(white)
  
+        #to make the blocks that will fall
         blocks(block_startx, block_starty, block_width, block_height, block_color)
 
+        #adding a rope to the screen
         rope = pygame.Rect(0,558,800,5)
         pygame.draw.rect(gameDisplay,brown,rope)
         pygame.display.flip()
@@ -182,6 +187,7 @@ def game_loop():
         p.player(x,y)
         blocks_dodged(dodged)
  
+        #to calculate if the player goes out of bounds
         if x > display_width - player_width or x < 0:
             hit()
  
@@ -195,6 +201,7 @@ def game_loop():
             #make blocks bigger
             block_width += (dodged * 1.2)
  
+#to calculate if a block hits a player 
         if y < block_starty+block_height:
  
             if x > block_startx and x < block_startx + block_width or x+player_width > block_startx and x + player_width < block_startx+block_width:
@@ -204,6 +211,7 @@ def game_loop():
         pygame.display.update()
         clock.tick(60)
 
+#all the loops
 start_menu()
 game_loop()
 pygame.quit()
