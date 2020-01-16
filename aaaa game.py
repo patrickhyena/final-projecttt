@@ -1,3 +1,4 @@
+#code from pythonprogamming.net
 #imports
 import pygame
 import time
@@ -24,7 +25,7 @@ pink = (255,100,180)
 #color for block to be dodged 
 block_color = (127,127,127)
 
-#size of player in game 
+#size of player in game 73 so that its not too big
 player_width = 73
 
 #game screen 
@@ -37,7 +38,7 @@ playerImg = pygame.image.load('player.png')
 
 #counter of objects dodged 
 def blocks_dodged(count):
-    font = pygame.font.SysFont(None, 25)
+    font = pygame.font.SysFont(None, 25) #size of font
     text = font.render("Dodged: "+str(count), True, black)
     gameDisplay.blit(text,(0,0))
 
@@ -73,7 +74,7 @@ def button(msg,x,y,w,h,ic,ac,action=None):
     else:
         pygame.draw.rect(gameDisplay, ic,(x,y,w,h))
 
-    smallText = pygame.font.SysFont("comicsansms",20)
+    smallText = pygame.font.SysFont("comicsansms",20) #size of font
     textSurf, textRect = text_objects(msg, smallText)
     textRect.center = ( (x+(w/2)), (y+(h/2)) )
     gameDisplay.blit(textSurf, textRect)    
@@ -86,7 +87,7 @@ def hit():
     
     #calling the sound when hit
     pygame.mixer.Sound.play(hit_sound)
-    largeText = pygame.font.SysFont("comicsansms",115)
+    largeText = pygame.font.SysFont("comicsansms",115) #size of font
     TextSurf, TextRect = text_objects("You Got Hit", largeText)
     TextRect.center = ((display_width/2),(display_height/2))
     gameDisplay.blit(TextSurf, TextRect)
@@ -103,7 +104,7 @@ def hit():
         button("Quit",550,450,100,50,red,bright_red,quitgame)
 
         pygame.display.update()
-        clock.tick(15)
+        clock.tick(15) #refresh rate
 
 #start menu
 def start_menu():
@@ -140,8 +141,8 @@ def game_loop():
  
  #to indicate that the blocks would generate randomly
     block_startx = random.randrange(0, display_width)
-    block_starty = -600
-    block_speed = 4
+    block_starty = -600 #so that blocks form off screen
+    block_speed = 4 #starting speed
     block_width = 100
     block_height = 100
  
